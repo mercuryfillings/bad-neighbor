@@ -5,10 +5,15 @@ import * as d3 from 'd3'
 
 export default function Main() {
 //state
+  //user query
   const [query, setQuery] = useState('')
+  //raw NYC open data
   const [data, setData] = useState([])
+  //filtered data - only years of frivolous 311 noise complaints
   const [years, setYears] = useState([])
+  //unique set of years for x axis from earliest year to latest in dataset
   const [xAxis, setXaxis] = useState([])
+  //2D array of data pairs, year + calls during that year
   const [points, setPoints] = useState([])
   const [toggle, setToggle] = useState(false)
 
@@ -82,30 +87,69 @@ export default function Main() {
 //build graph
 
   useEffect(() => {
-    if (years.length > 0 && d3Container.current) {
+    if (points.length > 0 && d3Container.current) {
+      const w = 500;
+      const h = 500;
+      const padding = 60;
+
+      const xScale = d3.scaleLinear()
+        .domain([2013, d3.max(points, (d) => d[0])])
+        .range([padding, w - padding]);
+      
+      const yScale = d3.scaleLinear()
+        .domain([0, d3.max(points, (d) => d[1])])
+        .range([h - padding, padding]);
+      
       const svg = d3.select(d3Container.current)
         .append('svg')
-        .attr('width', 800)
-        .attr('height', 400)
+        .attr('width', w)
+        .attr('height', h)
       
-      svg.selectAll('rect')
-        .data(years)
+      svg.selectAll("circle")
+        .data(points)
         .enter()
-        .append('rect')
-        .attr('x', (d, i) => i * 30)
-        .attr('y', 40)
-        .attr("width", 25)
-        .attr("height", (d, i) => 400 - (d * 3))
-        .attr('y', (d,i) => 400 - 3 * d - 3)
-        .text((d) => d)
+        .append("circle")
+        .attr("cx", (d) => xScale(d[0]))
+        .attr("cy",(d) => yScale(d[1]))
+        .attr("r", (d) => 5);
+      
+        svg.selectAll("text")
+        .data(points)
+        .enter()
+        .append("text")
+        .text((d) =>  (d[0] + "," + d[1]))
+        .attr("x", (d) => xScale(d[0] + 10))
+        .attr("y", (d) => yScale(d[1]))
+      
+      const xAxis = d3.axisBottom(xScale);
+    
+      const yAxis = d3.axisLeft(yScale);
+
+      svg.append("g")
+      .attr("transform", "translate(0," + (h - padding) + ")")
+      .call(xAxis);
+    svg.append("g")
+      .attr("transform", "translate(" + padding + ",0)")
+      .call(yAxis)
+      
+      // svg.selectAll('rect')
+      //   .data(points)
+      //   .enter()
+      //   .append('rect')
+      //   .attr('x', (d, i) => i * 30)
+      //   .attr('y', 40)
+      //   .attr("width", 25)
+      //   .attr("height", (d, i) => 400 - (d * 3))
+      //   .attr('y', (d,i) => 400 - 3 * d - 3)
+      //   .text((d) => d)
       }
   },
-    [years, d3Container.current])
+    [points, d3Container.current])
 
   return (
     <div>
       <h1>Your neighbor sucks!</h1>
-      {years.length > 0 ? <svg className='d3-component' ref={d3Container} /> : ''}
+      {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={500} height={500}/> : ''}
       <h2>{data.length < 1 && toggle ? ERROR_MESSAGE : ''}</h2>
       {console.log(d3Container.current)}
       {years.length > 0 ? console.log(points) : ''}
