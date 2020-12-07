@@ -46,7 +46,7 @@ export default function Main() {
 
   useEffect(() => {
     if (years.length > 0)
-    setPoints([...new Set(years)])
+    setPoints([...Array(Math.max(...years) - Math.min(...years) + 1).keys()].map(num => num + Math.min(...years)))
   }, [years])
 
   useEffect(() => {
