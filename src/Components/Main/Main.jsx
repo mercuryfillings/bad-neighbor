@@ -88,22 +88,46 @@ export default function Main() {
 
   useEffect(() => {
     if (points.length > 0 && d3Container.current) {
-      const w = 500;
+      const w = 800;
       const h = 500;
       const padding = 60;
 
-      const xScale = d3.scaleLinear()
-        .domain([2013, d3.max(points, (d) => d[0])])
+      //set xScale (need to dynamically set inital date in domain)
+
+      const xScale = d3.scaleTime()
+        .domain([d3.min(xAxis, (d) => d), d3.max(xAxis, (d) => d)])
         .range([padding, w - padding]);
+      
+      // d3.scaleTime()
+        // .domain(d3.extent(data, (d) => d.date ))
+        // .range([ 0, w ])
+      
+      //set yScale
       
       const yScale = d3.scaleLinear()
         .domain([0, d3.max(points, (d) => d[1])])
         .range([h - padding, padding]);
       
+      //build graph SVG
+      
       const svg = d3.select(d3Container.current)
         .append('svg')
         .attr('width', w)
         .attr('height', h)
+      
+      //add strokes
+      
+        svg.append("path")
+        .datum(points)
+        .attr("fill", "none")
+        .attr("stroke", "#69b3a2")
+        .attr("stroke-width", 1.5)
+        .attr("d", d3.line()
+          .x((d) => xScale(d[0]) )
+          .y((d) => yScale(d[1]) )
+        )
+      
+      //add dots
       
       svg.selectAll("circle")
         .data(points)
@@ -113,24 +137,16 @@ export default function Main() {
         .attr("cy",(d) => yScale(d[1]))
         .attr("r", (d) => 5);
       
-        svg.selectAll("text")
-        .data(points)
-        .enter()
-        .append("text")
-        .text((d) =>  (d[0] + "," + d[1]))
-        .attr("x", (d) => xScale(d[0] + 10))
-        .attr("y", (d) => yScale(d[1]))
-      
-      const xAxis = d3.axisBottom(xScale);
+      const xAxisLocal = d3.axisBottom(xScale).tickFormat(d3.format("d"));
     
-      const yAxis = d3.axisLeft(yScale);
+      const yAxisLocal = d3.axisLeft(yScale);
 
       svg.append("g")
       .attr("transform", "translate(0," + (h - padding) + ")")
-      .call(xAxis);
+      .call(xAxisLocal);
     svg.append("g")
       .attr("transform", "translate(" + padding + ",0)")
-      .call(yAxis)
+      .call(yAxisLocal)
       
       // svg.selectAll('rect')
       //   .data(points)
@@ -144,12 +160,12 @@ export default function Main() {
       //   .text((d) => d)
       }
   },
-    [points, d3Container.current])
+    [points, xAxis, d3Container.current])
 
   return (
     <div>
       <h1>Your neighbor sucks!</h1>
-      {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={500} height={500}/> : ''}
+      {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
       <h2>{data.length < 1 && toggle ? ERROR_MESSAGE : ''}</h2>
       {console.log(d3Container.current)}
       {years.length > 0 ? console.log(points) : ''}
