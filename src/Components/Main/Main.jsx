@@ -7,7 +7,7 @@ export default function Main() {
   const [query, setQuery] = useState('')
   const [data, setData] = useState([])
   const [years, setYears] = useState([])
-  const [points, setPoints] = useState({})
+  const [points, setPoints] = useState([])
   const [toggle, setToggle] = useState(false)
   const BASE_URL = "https://data.cityofnewyork.us/resource/erm2-nwe9.json/"
   const ADDRESS_FILTER = "?incident_address="
@@ -17,13 +17,6 @@ export default function Main() {
     try {
       const response = await axios.get(BASE_URL + ADDRESS_FILTER + query.toUpperCase())
       setData(response.data)
-      setYears(data.map(item => {
-        if (item.agency === 'NYPD' && item.resolution_description.includes("no evidence")) {
-          return parseInt(item.created_date.slice(0,4))
-        }
-      }).filter(item => {
-        return item != undefined
-      }).sort((a,b) => b - a))
     } catch (error) {
       console.log(error)
     }
@@ -40,7 +33,24 @@ export default function Main() {
   }
 
   useEffect(() => {
-    if (years && d3Container.current) {
+    if (data.length > 0) {
+      setYears(data.map(item => {
+        if (item.agency === 'NYPD' && item.resolution_description.includes("no evidence")) {
+          return parseInt(item.created_date.slice(0, 4))
+        }
+      }).filter(item => {
+        return item != undefined
+        }).sort((a, b) => b - a))
+      }
+    }, [data])
+
+  useEffect(() => {
+    if (years.length > 0)
+    setPoints([...new Set(years)])
+  }, [years])
+
+  useEffect(() => {
+    if (years.length > 0 && d3Container.current) {
       const svg = d3.select(d3Container.current)
         .append('svg')
         .attr('width', 800)
@@ -53,8 +63,10 @@ export default function Main() {
         .attr('x', (d, i) => i * 30)
         .attr('y', 40)
         .attr("width", 25)
-        .attr("height", (d, i) => d * 3 
-      )}
+        .attr("height", (d, i) => 400 - (d * 3))
+        .attr('y', (d,i) => 400 - 3 * d - 3)
+        .text((d) => d)
+      }
   },
     [years, d3Container.current])
 
@@ -64,7 +76,7 @@ export default function Main() {
       {years.length > 0 ? <svg className='d3-component' ref={d3Container} /> : ''}
       <h2>{data.length < 1 && toggle ? ERROR_MESSAGE : ''}</h2>
       {console.log(d3Container.current)}
-      {years.length > 0 ? console.log(years) : ''}
+      {years.length > 0 ? console.log(years, points) : ''}
       <form onSubmit={handleSubmit}>
         <label>Enter your address: </label>
         <input onChange={handleChange} />
