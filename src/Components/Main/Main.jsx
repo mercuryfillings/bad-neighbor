@@ -98,10 +98,6 @@ export default function Main() {
         .domain([d3.min(xAxis, (d) => d), d3.max(xAxis, (d) => d)])
         .range([padding, w - padding]);
       
-      // d3.scaleTime()
-        // .domain(d3.extent(data, (d) => d.date ))
-        // .range([ 0, w ])
-      
       //set yScale
       
       const yScale = d3.scaleLinear()
@@ -143,21 +139,12 @@ export default function Main() {
 
       svg.append("g")
       .attr("transform", "translate(0," + (h - padding) + ")")
-      .call(xAxisLocal);
-    svg.append("g")
+      .call(xAxisLocal)
+      
+      svg.append("g")
       .attr("transform", "translate(" + padding + ",0)")
       .call(yAxisLocal)
       
-      // svg.selectAll('rect')
-      //   .data(points)
-      //   .enter()
-      //   .append('rect')
-      //   .attr('x', (d, i) => i * 30)
-      //   .attr('y', 40)
-      //   .attr("width", 25)
-      //   .attr("height", (d, i) => 400 - (d * 3))
-      //   .attr('y', (d,i) => 400 - 3 * d - 3)
-      //   .text((d) => d)
       }
   },
     [points, xAxis, d3Container.current])
@@ -186,5 +173,3 @@ export default function Main() {
     </div>
   )
 }
-
-//width={400} height={200} 
