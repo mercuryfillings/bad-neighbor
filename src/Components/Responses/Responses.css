@@ -1,0 +1,39 @@
+.circle-n {
+  display: flex;
+  width: 30vw;
+  height: 30vw;
+  border-radius: 50%;
+  background-color: green;
+  color: white;
+  font-size: 10vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-y {
+  display: flex;
+  width: 30vw;
+  height: 30vw;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  font-size: 10vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-u {
+  display: flex;
+  width: 30vw;
+  height: 30vw;
+  border-radius: 50%;
+  background-color: yellow;
+  color: green;
+  font-size: 2vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  text-align: center;
+}

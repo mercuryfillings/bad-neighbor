@@ -2,6 +2,9 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import * as d3 from 'd3'
+import No from '../Responses/No'
+import Yes from '../Responses/Yes'
+import UsedTo from '../Responses/UsedTo'
 
 export default function Main() {
 //state
@@ -16,6 +19,7 @@ export default function Main() {
   //2D array of data pairs, year + calls during that year
   const [points, setPoints] = useState([])
   const [toggle, setToggle] = useState(false)
+  const [verdict, setVerdict] = useState(null)
 
 //variables
 
@@ -84,6 +88,18 @@ export default function Main() {
     }
   }, [xAxis, years])
 
+//set verdict
+  
+  useEffect(() => {
+    if (data.length > 0) {
+      if (years.length > xAxis.length * 3) {
+        setVerdict(<Yes />)
+      } else {
+        setVerdict(<No />)
+      }
+    }
+  }, [data, years, xAxis])
+
 //build graph
 
   useEffect(() => {
@@ -92,7 +108,7 @@ export default function Main() {
       const h = 500;
       const padding = 60;
 
-      //set xScale (need to dynamically set inital date in domain)
+      //set xScale
 
       const xScale = d3.scaleTime()
         .domain([d3.min(xAxis, (d) => d), d3.max(xAxis, (d) => d)])
@@ -133,9 +149,9 @@ export default function Main() {
         .attr("cy",(d) => yScale(d[1]))
         .attr("r", (d) => 5);
       
-      const xAxisLocal = d3.axisBottom(xScale).tickFormat(d3.format("d"));
+      const xAxisLocal = d3.axisBottom(xScale).tickFormat(d3.format("d"))
     
-      const yAxisLocal = d3.axisLeft(yScale);
+      const yAxisLocal = d3.axisLeft(yScale)
 
       svg.append("g")
       .attr("transform", "translate(0," + (h - padding) + ")")
@@ -151,7 +167,8 @@ export default function Main() {
 
   return (
     <div>
-      <h1>Your neighbor sucks!</h1>
+      <h1>Is your neighbor a Karen?</h1>
+      {verdict ? verdict : ''}
       {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
       <h2>{data.length < 1 && toggle ? ERROR_MESSAGE : ''}</h2>
       {console.log(d3Container.current)}
