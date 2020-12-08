@@ -199,6 +199,10 @@ export default function Main() {
           }
       }) : ''}
       </ol>
+      <section className='footer'>
+        <p className='footer-text'>App built by <a className='ext-link' href='http://www.scottdelbango.com' target='_blank'>SRD</a>. Powered by <a className='ext-link' href='https://opendata.cityofnewyork.us/' target='_blank'>NYC Open Data</a>.
+        <br/>This is all just for fun. Don't take it too seriously.</p>
+      </section>
     </div>
   )
 }
