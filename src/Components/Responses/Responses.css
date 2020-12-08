@@ -43,8 +43,8 @@
   height: 30vw;
   border-radius: 50%;
   background-color: #ffd166;
-  color: green;
-  font-size: 2vw;
+  color: rgb(53, 158, 53);
+  font-size: 2.2vw;
   align-items: center;
   justify-content: center;
   animation: fadeIn ease .8s;
