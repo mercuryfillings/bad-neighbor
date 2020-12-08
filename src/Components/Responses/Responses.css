@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
 
 .circle-n {
-  margin: 4vw;
+  margin: 2vw;
   display: flex;
   width: 30vw;
   height: 30vw;
   border-radius: 50%;
-  background-color: #06d6a0;
+  background-color: #06ce98;
   color: white;
   font-size: 9vw;
   align-items: center;
@@ -14,7 +14,7 @@
 }
 
 .circle-y {
-  margin: 4vw;
+  margin: 2vw;
   display: flex;
   width: 30vw;
   height: 30vw;
@@ -27,7 +27,7 @@
 }
 
 .circle-u {
-  margin: 4vw;
+  margin: 2vw;
   display: flex;
   width: 30vw;
   height: 30vw;
@@ -48,9 +48,19 @@
   font-family: 'Cinzel', serif;
   color: white;
   text-align: center;
-  margin: 0;
+  margin: 2vw;
 }
 
 .info-box {
   width: 40vw;
+}
+
+.yes-text {
+  color: #ef476f;
+  font-size: 2.4vw;
+}
+
+.no-text {
+  color: #5af8ce;
+  font-size: 2.4vw;
 }

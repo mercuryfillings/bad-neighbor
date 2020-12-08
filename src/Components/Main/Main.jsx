@@ -173,9 +173,8 @@ export default function Main() {
 
   return (
     <div className='body'>
-      <div className='title-box'>
+      <div className='title-box' onClick={handleRefresh}>
         <h1 className='title'>Is There a Karen in My Building?</h1>
-        {data.length < 1 ? <p className='intro'>Do bewildered police show up at your door asking about a party, only to find you alone, listening to quiet music in your pajamas? You may be sharing a building with a Karen. If you'd like to see if there's a trend of unsubstantiated 311 complaints at your building, enter your address into the search bar below.</p> : ''}
       </div>
       {verdict ? verdict : ''}
       {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
@@ -186,7 +185,10 @@ export default function Main() {
         <form className='form' onSubmit={handleSubmit}>
           <input className='field' placeholder='Enter Your Address' onChange={handleChange} />
           <button className='button'>Check 'Em Out!</button>
-      </form> : <button className='button2' onClick={handleRefresh}>Search a New Address?</button>}
+        </form> : <button className='button2' onClick={handleRefresh}>Search a New Address?</button>}
+        <section className='intro-box'>
+        {data.length < 1 ? <p className='intro'>Do bewildered police show up at your door asking about a party, only to find you alone, listening to quiet music in your pajamas? You may be sharing a building with a Karen. If you'd like to see if there's a trend of unsubstantiated 311 complaints at your building, enter your address into the search bar below.</p> : ''}
+        </section>
       {data.length > 0 ? <p className="intro">If you're curious, here's a list of the frivilous complaints we've found at your address.</p> : ''}
       <ol className='complaints'>
         {data ? data.map((item) => {
