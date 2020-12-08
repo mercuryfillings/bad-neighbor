@@ -50,7 +50,49 @@ export default function Main() {
   
   const apiCall = async () => {
     try {
-      const response = await axios.get(BASE_URL + ADDRESS_FILTER + query.toUpperCase())
+      let rawSearch = query.toUpperCase().split(' ')
+      let search = ''
+      if (rawSearch[1] === 'S') {
+        rawSearch[1] = 'SOUTH'
+      } else if (rawSearch[1] === 'W') {
+        rawSearch[1] = 'WEST'
+      } else if (rawSearch[1] === 'N') {
+        rawSearch[1] = 'NORTH'
+      } else if (rawSearch[1] === 'E') {
+        rawSearch[1] = 'EAST'
+      }
+      if (rawSearch[2] === 'ST') {
+        rawSearch[2] = 'STREET'
+      } else if (rawSearch[2] === 'DR') {
+        rawSearch[2] = 'DRIVE'
+      } else if (rawSearch[2] === 'AVE') {
+        rawSearch[2] = 'AVENUE'
+      } else if (rawSearch[2] === 'RD') {
+        rawSearch[2] = 'ROAD'
+      } else if (rawSearch[2] === 'BLVD') {
+        rawSearch[2] = "BOULEVARD"
+      } else if (rawSearch[2] === '1ST') {
+        rawSearch[2] = '1'
+      } else if (rawSearch[2] === '2ND') {
+        rawSearch[2] = '2'
+      } else if (rawSearch[2] === '3RD') {
+        rawSearch[2] = '3'
+      } else if (rawSearch[2].includes('th')) {
+        rawSearch[2] = rawSearch[2].slice(0, rawSearch[2].length - 2)
+      }
+      if (rawSearch[3] === 'ST') {
+        rawSearch[3] = 'STREET'
+      } else if (rawSearch[3] === 'DR') {
+        rawSearch[3] = 'DRIVE'
+      } else if (rawSearch[3] === 'AVE') {
+        rawSearch[3] = 'AVENUE'
+      } else if (rawSearch[2] === 'RD') {
+        rawSearch[3] = 'ROAD'
+      } else if (rawSearch[2] === 'BLVD') {
+        rawSearch[3] = "BOULEVARD"
+      }
+      search = rawSearch.join(' ')
+      const response = await axios.get(BASE_URL + ADDRESS_FILTER + search)
       setData(response.data)
     } catch (error) {
       console.log(error)
