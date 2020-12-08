@@ -175,6 +175,7 @@ export default function Main() {
     <div className='body'>
       <div className='title-box'>
         <h1 className='title'>Is There a Karen in My Building?</h1>
+        {data.length < 1 ? <p className='intro'>Do bewildered police show up at your door while you're listeing to music at a reasonable volume at 9pm on a Friday? Have you received passive-aggressive notes on your door in response to quiet conversations you've had with your significant other? You may be living with a Karen. If you'd like to see if there's a trend of frivolous 311 calls at your building, enter your address into the search bar below.</p> : ''}
       </div>
       {verdict ? verdict : ''}
       {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
@@ -186,8 +187,8 @@ export default function Main() {
           <input className='field' placeholder='Enter Your Address' onChange={handleChange} />
           <button className='button'>Check 'Em Out!</button>
       </form> : <button className='button2' onClick={handleRefresh}>Search a New Address?</button>}
-      
-      <ol>
+      {data.length > 0 ? <p className="intro">If you're curious, here's a list of the frivilous complaints we've found at your address.</p> : ''}
+      <ol className='complaints'>
         {data ? data.map((item) => {
           if (item.agency === 'NYPD' && item.resolution_description.includes("no evidence")) {
             return <li key={item.unique_key}>{new Date(item.created_date).toLocaleString()} | <strong>{item.agency}</strong> | <em>{item.complaint_type}: {item.descriptor}: {item.location_type}<p>{item.resolution_description}</p></em></li>

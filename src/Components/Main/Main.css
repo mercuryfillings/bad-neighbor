@@ -13,9 +13,20 @@ body {
 
 .title-box {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30vw;
   margin: 4vw 0 0 0;
   padding: 2vw 3vw;
   
+}
+
+.intro {
+  font-size: 1.3vw;
+  font-family: 'Cinzel', serif;
+  color: white;
+  text-align: center;
+  margin: 0;
 }
 
 .form {
@@ -25,7 +36,8 @@ body {
 .title {
   font-family: 'Cinzel', serif;
   font-weight: 200;
-  color: #ebf4fa;   
+  color: #ebf4fa;
+  text-align: center;
 }
 
 .field {
@@ -59,4 +71,8 @@ body {
   background-color: #ef476f;
   color: white;
   margin: 5vw;
+}
+
+.complaints {
+  margin: 4vw 0 0 0;
 }
