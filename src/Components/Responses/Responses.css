@@ -1,33 +1,36 @@
 .circle-n {
+  margin: 4vw;
   display: flex;
   width: 30vw;
   height: 30vw;
   border-radius: 50%;
-  background-color: green;
+  background-color: #06d6a0;
   color: white;
-  font-size: 10vw;
+  font-size: 9vw;
   align-items: center;
   justify-content: center;
 }
 
 .circle-y {
+  margin: 4vw;
   display: flex;
   width: 30vw;
   height: 30vw;
   border-radius: 50%;
-  background-color: red;
+  background-color: #ef476f;
   color: white;
-  font-size: 10vw;
+  font-size: 9vw;
   align-items: center;
   justify-content: center;
 }
 
 .circle-u {
+  margin: 4vw;
   display: flex;
   width: 30vw;
   height: 30vw;
   border-radius: 50%;
-  background-color: yellow;
+  background-color: #ffd166;
   color: green;
   font-size: 2vw;
   align-items: center;

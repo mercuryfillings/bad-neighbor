@@ -5,6 +5,7 @@ import * as d3 from 'd3'
 import No from '../Responses/No'
 import Yes from '../Responses/Yes'
 import UsedTo from '../Responses/UsedTo'
+import './Main.css'
 
 export default function Main() {
 //state
@@ -49,6 +50,10 @@ export default function Main() {
     e.preventDefault()
     apiCall()
     setToggle(true)
+  }
+
+  const handleRefresh = () => {
+    window.location.reload()
   }
 
 //set years array in state
@@ -132,7 +137,7 @@ export default function Main() {
         svg.append("path")
         .datum(points)
         .attr("fill", "none")
-        .attr("stroke", "#69b3a2")
+        .attr("stroke", "#ffd166")
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
           .x((d) => xScale(d[0]) )
@@ -147,7 +152,8 @@ export default function Main() {
         .append("circle")
         .attr("cx", (d) => xScale(d[0]))
         .attr("cy",(d) => yScale(d[1]))
-        .attr("r", (d) => 5);
+        .attr("r", (d) => 5)
+        .attr('fill', '#ef476f')
       
       const xAxisLocal = d3.axisBottom(xScale).tickFormat(d3.format("d"))
     
@@ -166,18 +172,21 @@ export default function Main() {
     [points, xAxis, d3Container.current])
 
   return (
-    <div>
-      <h1>Is your neighbor a Karen?</h1>
+    <div className='body'>
+      <div className='title-box'>
+        <h1 className='title'>Is There a Karen in My Building?</h1>
+      </div>
       {verdict ? verdict : ''}
       {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
       <h2>{data.length < 1 && toggle ? ERROR_MESSAGE : ''}</h2>
       {console.log(d3Container.current)}
       {years.length > 0 ? console.log(points) : ''}
-      <form onSubmit={handleSubmit}>
-        <label>Enter your address: </label>
-        <input onChange={handleChange} />
-        <button>Check 'Em Out!</button>
-      </form>
+      {data.length < 1 ?
+        <form className='form' onSubmit={handleSubmit}>
+          <input className='field' placeholder='Enter Your Address' onChange={handleChange} />
+          <button className='button'>Check 'Em Out!</button>
+      </form> : <button className='button2' onClick={handleRefresh}>Search a New Address?</button>}
+      
       <ol>
         {data ? data.map((item) => {
           if (item.agency === 'NYPD' && item.resolution_description.includes("no evidence")) {
