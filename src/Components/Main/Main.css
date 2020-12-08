@@ -23,6 +23,10 @@ body {
   cursor: pointer;
 }
 
+.instructions {
+  font-family: 'Cinzel', serif;
+}
+
 .intro {
   font-size: 1.3vw;
   font-family: 'Cinzel', serif;

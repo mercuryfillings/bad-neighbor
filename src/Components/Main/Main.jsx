@@ -18,6 +18,8 @@ export default function Main() {
 //state
   //user query
   const [query, setQuery] = useState('')
+  //last query
+  const [prev, setPrev] = useState('')
   //raw NYC open data
   const [data, setData] = useState([])
   //filtered data - only years of frivolous 311 noise complaints
@@ -33,7 +35,7 @@ export default function Main() {
 
   const BASE_URL = "https://data.cityofnewyork.us/resource/erm2-nwe9.json/"
   const ADDRESS_FILTER = "?incident_address="
-  const ERROR_MESSAGE = 'No data for this address'
+  const ERROR_MESSAGE = `No data for the address: ${prev}. Remember: Only enter street name and building number.`
   const d3Container = useRef(null)
 
 //api call
@@ -57,6 +59,7 @@ export default function Main() {
     e.preventDefault()
     apiCall()
     setToggle(true)
+    setPrev(query)
   }
 
   const handleRefresh = () => {
@@ -190,7 +193,7 @@ export default function Main() {
       {years.length > 0 ? console.log(points) : ''}
       {data.length < 1 ?
         <form className='form' onSubmit={handleSubmit}>
-          <input className='field' placeholder='Enter Your Address' onChange={handleChange} />
+          <input className='field' placeholder='Enter Street Name & Building Number' onChange={handleChange} />
           <button className='button'>Check 'Em Out!</button>
         </form> : <button className='button2' onClick={handleRefresh}>Search a New Address?</button>}
         <section className='intro-box'>
@@ -212,7 +215,7 @@ export default function Main() {
         <LinkedinShareButton />
         <RedditShareButton />
         <TwitterShareButton />
-        <p className='footer-text'>App built by <a className='ext-link' href='http://www.scottdelbango.com' target='_blank'>SRD</a>. Powered by <a className='ext-link' href='https://opendata.cityofnewyork.us/' target='_blank'>NYC Open Data</a>.
+        <p className='footer-text'>App built by <a className='ext-link' href='http://www.scottdelbango.com' target='_blank'>SRD</a> using React and D3. Powered by <a className='ext-link' href='https://opendata.cityofnewyork.us/' target='_blank'>NYC Open Data</a>.
         <br/>This is all just for fun. Don't take it too seriously.</p>
       </section>
     </div>
