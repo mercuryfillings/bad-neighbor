@@ -8,10 +8,10 @@ export default function Yes() {
         <h1>Yes</h1>
       </div>
       <section className='info-box'>
-        <p className='info'>It's coming from inside the house! Sorry to say, but there is ABSOLUTELY a Karen in your building. Don't look now, but I think I hear the cops outside.</p>
+        <p className='info'>It's coming from inside the house! Sorry to say, but there is ABSOLUTELY a Karen in your midst, and they would like to speak with your manager (the police).</p>
         <br />
         <br/>
-        <p className='info'>Here's a graph showing your neighbor at work. All of these calls were unsubstantiated by the police, who are legally required to respond in person to any and all noise complaints they receive.</p>
+        <p className='info'>Here's a graph showing your neighbor at work. All of these claims were determined to be unfounded by the police.</p>
       </section>
     </>
   )

@@ -175,7 +175,7 @@ export default function Main() {
     <div className='body'>
       <div className='title-box'>
         <h1 className='title'>Is There a Karen in My Building?</h1>
-        {data.length < 1 ? <p className='intro'>Do bewildered police show up at your door while you're listeing to music at a reasonable volume at 9pm on a Friday? Have you received passive-aggressive notes on your door in response to quiet conversations you've had with your significant other? You may be living with a Karen. If you'd like to see if there's a trend of frivolous 311 calls at your building, enter your address into the search bar below.</p> : ''}
+        {data.length < 1 ? <p className='intro'>Do bewildered police show up at your door asking about a party when you're alone, listening to quiet music at 9pm on a Friday? You may be sharing a building with a Karen. If you'd like to see if there's a trend of unsubstantiated 311 calls at your building, enter your address into the search bar below.</p> : ''}
       </div>
       {verdict ? verdict : ''}
       {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
