@@ -32,7 +32,7 @@ export default function Main() {
   //2D array of data pairs, year + calls during that year
   const [points, setPoints] = useState([])
   //set max point
-  const [max, setMax] = useState(0)
+  const [max, setMax] = useState(null)
   //error message toggle
   const [toggle, setToggle] = useState(false)
   //Determine verdict
@@ -129,14 +129,17 @@ export default function Main() {
 //set verdict
   
   useEffect(() => {
-    if (data.length > 0) {
-      if (years.length > xAxis.length) {
-        setVerdict(<Yes complaints={years.length} time={xAxis.length}/>)
+    if (max) {
+      const arr = points.reverse()
+      if (years.length > xAxis.length && arr[0][1] < max / 2) {
+        setVerdict(<UsedTo complaints={years.length} time={xAxis.length} />)
+      } else if (years.length > xAxis.length) {
+        setVerdict(<Yes complaints={years.length} time={xAxis.length} />)
       } else {
         setVerdict(<No complaints={years.length} time={xAxis.length}/>)
       }
     }
-  }, [data, years, xAxis])
+  }, [data, years, xAxis, points, max])
 
 //build graph
 
@@ -213,7 +216,7 @@ export default function Main() {
       {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
       <h2>{data.length < 1 && toggle ? <div className='error-box'><p className='error'>{ERROR_MESSAGE}</p></div> : ''}</h2>
       {console.log(d3Container.current)}
-      {years.length > 0 ? console.log(points) : ''}
+      {/* {years.length > 0 ? console.log(points) : ''} */}
       {data.length < 1 ?
         <form className='form' onSubmit={handleSubmit}>
           <input className='field' placeholder='Enter Street Name & Building Number' onChange={handleChange} />
