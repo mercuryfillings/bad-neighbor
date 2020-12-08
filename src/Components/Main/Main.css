@@ -104,19 +104,20 @@ body {
 .footer-text {
   color: white;
   font-size: 1vw;
-  font-family: 'Cinzel', serif;
+  font-family: 'helvetica', sans-serif;
+  font-weight: 100;
   text-align: center;
 }
 
 .ext-link {
-  color: #ee2251;
-  font-size: 1.1vw;
+  color: white;
+  font-size: 1.2vw;
   font-family: 'Cinzel', serif;
   text-decoration: none;
 }
 
 .ext-link:hover {
-  font-size: 1.3vw;
+  font-size: 1.5vw;
   transition: .2s;
 }
 
