@@ -178,7 +178,7 @@ export default function Main() {
       </div>
       {verdict ? verdict : ''}
       {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
-      <h2>{data.length < 1 && toggle ? ERROR_MESSAGE : ''}</h2>
+      <h2>{data.length < 1 && toggle ? <div className='error-box'><p className='error'>{ERROR_MESSAGE}</p></div> : ''}</h2>
       {console.log(d3Container.current)}
       {years.length > 0 ? console.log(points) : ''}
       {data.length < 1 ?

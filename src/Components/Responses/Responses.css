@@ -11,6 +11,11 @@
   font-size: 9vw;
   align-items: center;
   justify-content: center;
+  animation: fadeIn ease 2s;
+    -webkit-animation: fadeIn ease .8s;
+    -moz-animation: fadeIn ease .8s;
+    -o-animation: fadeIn ease .8s;
+    -ms-animation: fadeIn ease .8s;
 }
 
 .circle-y {
@@ -24,6 +29,11 @@
   font-size: 9vw;
   align-items: center;
   justify-content: center;
+  animation: fadeIn ease .8s;
+    -webkit-animation: fadeIn ease .8s;
+    -moz-animation: fadeIn ease .8s;
+    -o-animation: fadeIn ease .8s;
+    -ms-animation: fadeIn ease .8s;
 }
 
 .circle-u {
@@ -37,6 +47,16 @@
   font-size: 2vw;
   align-items: center;
   justify-content: center;
+  animation: fadeIn ease .8s;
+    -webkit-animation: fadeIn ease .8s;
+    -moz-animation: fadeIn ease .8s;
+    -o-animation: fadeIn ease .8s;
+    -ms-animation: fadeIn ease .8s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }
 
 .text {
