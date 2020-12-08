@@ -13,14 +13,9 @@ body {
 
 .title-box {
   display: flex;
-  border-radius: 1vw;
-  background-color: #073b4c;
-  padding: 2vw 3vw;
   margin: 4vw 0 0 0;
-  border-radius: 50px;
-  background: linear-gradient(145deg, #5bc6ff, #4da7db);
-  box-shadow:  20px 20px 60px #489dcf, 
-             -20px -20px 60px #62d5ff;
+  padding: 2vw 3vw;
+  
 }
 
 .form {
