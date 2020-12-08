@@ -92,6 +92,7 @@ export default function Main() {
         rawSearch[3] = "BOULEVARD"
       }
       search = rawSearch.join(' ')
+      console.log(search)
       const response = await axios.get(BASE_URL + ADDRESS_FILTER + search)
       setData(response.data)
     } catch (error) {
@@ -164,7 +165,6 @@ export default function Main() {
         }
       })
       setMax(maxPt)
-      console.log(maxPt)
     }
   })
 
@@ -173,13 +173,15 @@ export default function Main() {
   useEffect(() => {
     if (max) {
       const arr = points.reverse()
-      if (years.length > xAxis.length && arr[0][1] < max / 2) {
+      if (years.length > xAxis.length * 3 && arr[0][1] < max / 2) {
         setVerdict(<UsedTo complaints={years.length} time={xAxis.length} />)
-      } else if (years.length > xAxis.length) {
+      } else if (years.length > xAxis.length * 3) {
         setVerdict(<Yes complaints={years.length} time={xAxis.length} />)
       } else {
-        setVerdict(<No complaints={years.length} time={xAxis.length}/>)
+        setVerdict(<No complaints={years.length} time={xAxis.length} />)
       }
+    } else if (data.length > 0) {
+      setVerdict(<No complaints={years.length} time={xAxis.length} />)
     }
   }, [data, years, xAxis, points, max])
 
@@ -255,10 +257,10 @@ export default function Main() {
         <h1 className='title'>Is There a Karen in My Building?</h1>
       </div>
       {verdict ? verdict : ''}
+      {console.log(verdict)}
+      {console.log(data)}
       {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
       <h2>{data.length < 1 && toggle ? <div className='error-box'><p className='error'>{ERROR_MESSAGE}</p></div> : ''}</h2>
-      {console.log(d3Container.current)}
-      {/* {years.length > 0 ? console.log(points) : ''} */}
       {data.length < 1 ?
         <form className='form' onSubmit={handleSubmit}>
           <input className='field' placeholder='Enter Street Name & Building Number' onChange={handleChange} />
