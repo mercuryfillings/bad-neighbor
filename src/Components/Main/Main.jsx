@@ -7,11 +7,14 @@ import Yes from '../Responses/Yes'
 import UsedTo from '../Responses/UsedTo'
 import './Main.css'
 import {
-  EmailShareButton,
   FacebookShareButton,
   LinkedinShareButton,
   RedditShareButton,
   TwitterShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  RedditIcon
 } from "react-share";
 
 export default function Main() {
@@ -28,7 +31,9 @@ export default function Main() {
   const [xAxis, setXaxis] = useState([])
   //2D array of data pairs, year + calls during that year
   const [points, setPoints] = useState([])
+  //error message toggle
   const [toggle, setToggle] = useState(false)
+  //Determine verdict
   const [verdict, setVerdict] = useState(null)
 
 //variables
@@ -37,6 +42,7 @@ export default function Main() {
   const ADDRESS_FILTER = "?incident_address="
   const ERROR_MESSAGE = `No data for the address: ${prev}. Remember: Only enter street name and building number.`
   const d3Container = useRef(null)
+  const QUOTE = 'Is there a Karen in my NYC building? Find out now!'
 
 //api call
   
@@ -210,11 +216,20 @@ export default function Main() {
       }) : ''}
       </ol>
       <section className='footer'>
-        <EmailShareButton />
-        <FacebookShareButton quote='Is there a Karen in my building?'/>
-        <LinkedinShareButton />
-        <RedditShareButton />
-        <TwitterShareButton />
+        <div className='icons'>
+        <FacebookShareButton url='www.isthereakaren.com' quote={QUOTE}>
+          <FacebookIcon size={50}/>
+        </FacebookShareButton>
+        <LinkedinShareButton url='www.isthereakaren.com' quote={QUOTE}>
+          <LinkedinIcon size={50}/>
+        </LinkedinShareButton>
+        <RedditShareButton url='www.isthereakaren.com' quote={QUOTE}>
+          <RedditIcon size={50}/>
+        </RedditShareButton>
+        <TwitterShareButton url='www.isthereakaren.com' quote={QUOTE}>
+          <TwitterIcon size={50}/>
+          </TwitterShareButton>
+        </div>
         <p className='footer-text'>App built by <a className='ext-link' href='http://www.scottdelbango.com' target='_blank'>SRD</a> using React and D3. Powered by <a className='ext-link' href='https://opendata.cityofnewyork.us/' target='_blank'>NYC Open Data</a>.
         <br/>This is all just for fun. Don't take it too seriously.</p>
       </section>
