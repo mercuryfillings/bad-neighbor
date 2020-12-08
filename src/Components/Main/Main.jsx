@@ -175,7 +175,7 @@ export default function Main() {
     <div className='body'>
       <div className='title-box'>
         <h1 className='title'>Is There a Karen in My Building?</h1>
-        {data.length < 1 ? <p className='intro'>Do bewildered police show up at your door asking about a party, only to find you alone, listening to quiet music in your pajamas? You may be sharing a building with a Karen. If you'd like to see if there's a trend of unsubstantiated 311 calls at your building, enter your address into the search bar below.</p> : ''}
+        {data.length < 1 ? <p className='intro'>Do bewildered police show up at your door asking about a party, only to find you alone, listening to quiet music in your pajamas? You may be sharing a building with a Karen. If you'd like to see if there's a trend of unsubstantiated 311 complaints at your building, enter your address into the search bar below.</p> : ''}
       </div>
       {verdict ? verdict : ''}
       {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
