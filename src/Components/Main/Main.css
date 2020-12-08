@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
 
 body {
-  background-color: #55b9f3;
+  background: url(../../karen.jpg) rgb(75, 183, 245);
+  background-blend-mode: soft-light;
+  background-size: cover;
+  background-position: fixed;
 }
 
 .body {

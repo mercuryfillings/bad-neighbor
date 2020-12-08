@@ -98,9 +98,9 @@ export default function Main() {
   useEffect(() => {
     if (data.length > 0) {
       if (years.length > xAxis.length * 3) {
-        setVerdict(<Yes />)
+        setVerdict(<Yes complaints={years.length} time={xAxis.length}/>)
       } else {
-        setVerdict(<No />)
+        setVerdict(<No complaints={years.length} time={xAxis.length}/>)
       }
     }
   }, [data, years, xAxis])
