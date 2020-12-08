@@ -60,6 +60,14 @@ export default function Main() {
         rawSearch[1] = 'NORTH'
       } else if (rawSearch[1] === 'E') {
         rawSearch[1] = 'EAST'
+      } else if (rawSearch[1] === '1ST') {
+        rawSearch[1] = '1'
+      } else if (rawSearch[1] === '2ND') {
+        rawSearch[1] = '2'
+      } else if (rawSearch[1] === '3RD') {
+        rawSearch[1] = '3'
+      } else if (rawSearch[1] != 'SOUTH' && rawSearch[1] != 'NORTH' && rawSearch[1].includes('th')) {
+        rawSearch[1] = rawSearch[2].slice(0, rawSearch[2].length - 2)
       }
       if (rawSearch[2] === 'ST') {
         rawSearch[2] = 'STREET'
@@ -77,7 +85,7 @@ export default function Main() {
         rawSearch[2] = '2'
       } else if (rawSearch[2] === '3RD') {
         rawSearch[2] = '3'
-      } else if (rawSearch[2].includes('th')) {
+      } else if (rawSearch[2].includes('TH')) {
         rawSearch[2] = rawSearch[2].slice(0, rawSearch[2].length - 2)
       }
       if (rawSearch[3] === 'ST') {
