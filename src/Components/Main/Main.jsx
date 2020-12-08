@@ -31,6 +31,8 @@ export default function Main() {
   const [xAxis, setXaxis] = useState([])
   //2D array of data pairs, year + calls during that year
   const [points, setPoints] = useState([])
+  //set max point
+  const [max, setMax] = useState(0)
   //error message toggle
   const [toggle, setToggle] = useState(false)
   //Determine verdict
@@ -109,11 +111,26 @@ export default function Main() {
     }
   }, [xAxis, years])
 
+//set max point
+  
+  useEffect(() => {
+    if (points.length > 0) {
+      let maxPt = 0
+      points.forEach(point => {
+        if (point[1] > maxPt) {
+          maxPt = point[1]
+        }
+      })
+      setMax(maxPt)
+      console.log(maxPt)
+    }
+  })
+
 //set verdict
   
   useEffect(() => {
     if (data.length > 0) {
-      if (years.length > xAxis.length * 3) {
+      if (years.length > xAxis.length) {
         setVerdict(<Yes complaints={years.length} time={xAxis.length}/>)
       } else {
         setVerdict(<No complaints={years.length} time={xAxis.length}/>)
