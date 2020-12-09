@@ -109,4 +109,14 @@
   .info-box {
     width: 80vw;
   }
+
+  .yes-text {
+    color: #f16b8b;
+    font-size: 6vw;
+  }
+  
+  .no-text {
+    color: #5af8ce;
+    font-size: 6vw;
+  }
 }
