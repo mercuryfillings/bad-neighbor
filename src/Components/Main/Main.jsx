@@ -282,7 +282,7 @@ export default function Main() {
       <h2>{data.length < 1 && toggle ? <div className='error-box'><p className='error'>{ERROR_MESSAGE}</p></div> : ''}</h2>
       {data.length < 1 ?
         <form className='form' onSubmit={handleSubmit}>
-          <input className='field' placeholder='Enter Street Name & Building Number' onChange={handleChange} />
+          <input className='field' placeholder='Enter Building Number & Street Name' onChange={handleChange} />
           <button className='button'>Check 'Em Out!</button>
         </form> : <button className='button2' onClick={handleRefresh}>Search a New Address?</button>}
         <section className='intro-box'>
