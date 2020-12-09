@@ -145,3 +145,58 @@ body {
   0% {opacity:0;}
   100% {opacity:1;}
 }
+
+@media (max-width: 400px) {
+
+  body {
+    background-size: 700px;
+  }
+
+  .title-box {
+    align-items: center;
+    width: 85vw;
+    padding: 0 3vw 0 3vw;
+  }
+
+  .title {
+    font-weight: 200;
+    font-size: 12vw;
+    margin: 10vw 0 0 0;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field {
+    border-radius: 1vw;
+    margin: 2vw;
+    width: 60vw;
+  }
+
+  .button {
+    padding: 1vw;
+    border-radius: 1vw;
+    border: none;
+    background-color: #ef476f;
+    font-family: 'helvetica', sans-serif;
+    color: white;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 5vw;
+    width: auto;
+  }
+
+  .footer-text {
+    font-size: 4vw;
+  }
+  
+  .ext-link {
+    font-size: 4.2vw;
+    line-height: 6vw;
+  }
+
+}
