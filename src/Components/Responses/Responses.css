@@ -84,3 +84,29 @@
   color: #5af8ce;
   font-size: 2.4vw;
 }
+
+@media (max-width: 415px) {
+  .circle-n {
+    width: 80vw;
+    height: 80vw;
+  }
+
+  .circle-y {
+    width: 80vw;
+    height: 80vw;
+  }
+
+  .circle-u {
+    width: 80vw;
+    height: 80vw;
+  }
+
+  .info {
+    font-size: 5vw;
+    margin: 2vw;
+  }
+  
+  .info-box {
+    width: 80vw;
+  }
+}
