@@ -1,7 +1,6 @@
 //TODO
 
 //add hover states to dots
-//styling styling styling
 //mobile styling
 
 //Issues
