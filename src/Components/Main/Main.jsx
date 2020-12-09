@@ -45,6 +45,7 @@ export default function Main() {
   const ERROR_MESSAGE = `No data for the address: ${prev}. Remember: Only enter street name and building number.`
   const d3Container = useRef(null)
   const QUOTE = 'Is there a Karen in my NYC building? Find out now!'
+  const regex = /\dTH$/
 
 //api call
   
@@ -66,7 +67,7 @@ export default function Main() {
         rawSearch[1] = '2'
       } else if (rawSearch[1] === '3RD') {
         rawSearch[1] = '3'
-      } else if (rawSearch[1] != 'SOUTH' && rawSearch[1] != 'NORTH' && rawSearch[1].includes('TH')) {
+      } else if (regex.test(rawSearch[1])) {
         rawSearch[1] = rawSearch[1].slice(0, rawSearch[1].length - 2)
       }
       if (rawSearch[2] === 'ST') {
@@ -85,7 +86,7 @@ export default function Main() {
         rawSearch[2] = '2'
       } else if (rawSearch[2] === '3RD') {
         rawSearch[2] = '3'
-      } else if (rawSearch[2].includes('TH')) {
+      } else if (regex.test(rawSearch[2])) {
         rawSearch[2] = rawSearch[2].slice(0, rawSearch[2].length - 2)
       }
       if (rawSearch[3] === 'ST') {
