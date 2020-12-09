@@ -211,4 +211,16 @@ body {
     line-height: 6vw;
   }
 
+  .button2 {
+    padding: 3vw;
+    border-radius: 2vw;
+    width: 71vw;
+    margin: 0 0 5vw 0;
+    font-size: 5vw;
+  }
+  /* .d3-component {
+    width: 80vw;
+    height: 30vw;
+  } */
+
 }

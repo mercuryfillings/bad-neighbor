@@ -198,8 +198,8 @@ export default function Main() {
 
   useEffect(() => {
     if (points.length > 0 && d3Container.current) {
-      const w = 800;
-      const h = 500;
+      const w = 490;
+      const h = 350;
       const padding = 60;
 
       //set xScale
@@ -278,7 +278,7 @@ export default function Main() {
       {verdict ? verdict : ''}
       {console.log(verdict)}
       {console.log(data)}
-      {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={800} height={500}/> : ''}
+      {years.length > 0 ? <svg className='d3-component' ref={d3Container} width={490} height={350}/> : ''}
       <h2>{data.length < 1 && toggle ? <div className='error-box'><p className='error'>{ERROR_MESSAGE}</p></div> : ''}</h2>
       {data.length < 1 ?
         <form className='form' onSubmit={handleSubmit}>
