@@ -89,16 +89,19 @@
   .circle-n {
     width: 80vw;
     height: 80vw;
+    font-size: 25vw;
   }
 
   .circle-y {
     width: 80vw;
     height: 80vw;
+    font-size: 25vw;
   }
 
   .circle-u {
     width: 80vw;
     height: 80vw;
+    font-size: 6vw;
   }
 
   .info {
