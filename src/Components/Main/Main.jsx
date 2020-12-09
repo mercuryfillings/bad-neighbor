@@ -243,7 +243,7 @@ export default function Main() {
         .attr("r", (d) => 5)
         .attr('fill', '#ef476f')
       
-        svg.append("g")
+      svg.append("g")
         .attr("font-family", "sans-serif")
         .attr("font-size", 10)
         .selectAll("text")
@@ -252,15 +252,6 @@ export default function Main() {
         .attr("x", d => xScale(d[0]) + 7)
         .attr("y", d => yScale(d[1]))
         .text(d => d[1])
-      
-      // svg.selectAll("text")
-      //   .data(points)
-      //   .enter()
-      //   .append("text")
-      //   .text((d) => d[1])
-      //   .attr("x", (d, i) => i * 30)
-      //   .attr("y", (d, i) => h - (3 * d) - 3)
-      //   .attr('class', 'num')
       
       const xAxisLocal = d3.axisBottom(xScale).tickFormat(d3.format("d"))
     
