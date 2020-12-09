@@ -149,7 +149,8 @@ body {
 @media (max-width: 415px) {
 
   body {
-    background-size: 700px;
+    
+    background: rgb(90, 189, 247);
   }
 
   .title-box {
