@@ -67,7 +67,7 @@ export default function Main() {
       } else if (rawSearch[1] === '3RD') {
         rawSearch[1] = '3'
       } else if (rawSearch[1] != 'SOUTH' && rawSearch[1] != 'NORTH' && rawSearch[1].includes('TH')) {
-        rawSearch[1] = rawSearch[2].slice(0, rawSearch[2].length - 2)
+        rawSearch[1] = rawSearch[1].slice(0, rawSearch[2].length - 2)
       }
       if (rawSearch[2] === 'ST') {
         rawSearch[2] = 'STREET'
