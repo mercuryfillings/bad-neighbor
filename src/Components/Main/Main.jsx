@@ -44,7 +44,7 @@ export default function Main() {
   const ADDRESS_FILTER = "?incident_address="
   const ERROR_MESSAGE = `No data for the address: ${prev}. Remember: Only enter street name and building number.`
   const d3Container = useRef(null)
-  const QUOTE = 'Is there a Karen in my NYC building? Find out now!'
+  const QUOTE = 'Is there a Karen in your NYC building? Find out now!'
   const regex = /\d\w+/
 
 //api call
@@ -64,7 +64,7 @@ export default function Main() {
       } else if (regex.test(rawSearch[1])) {
         rawSearch[1] = rawSearch[1].slice(0, rawSearch[1].length - 2)
       }
-      
+
       if (rawSearch[2] === 'ST') {
         rawSearch[2] = 'STREET'
       } else if (rawSearch[2] === 'DR') {
