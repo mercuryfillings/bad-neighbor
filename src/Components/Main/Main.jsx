@@ -45,7 +45,7 @@ export default function Main() {
   const ERROR_MESSAGE = `No data for the address: ${prev}. Remember: Only enter street name and building number.`
   const d3Container = useRef(null)
   const QUOTE = 'Is there a Karen in my NYC building? Find out now!'
-  const regex = /\dTH$/
+  const regex = /\d\w+/
 
 //api call
   
@@ -61,15 +61,10 @@ export default function Main() {
         rawSearch[1] = 'NORTH'
       } else if (rawSearch[1] === 'E') {
         rawSearch[1] = 'EAST'
-      } else if (rawSearch[1] === '1ST') {
-        rawSearch[1] = '1'
-      } else if (rawSearch[1] === '2ND') {
-        rawSearch[1] = '2'
-      } else if (rawSearch[1] === '3RD') {
-        rawSearch[1] = '3'
       } else if (regex.test(rawSearch[1])) {
         rawSearch[1] = rawSearch[1].slice(0, rawSearch[1].length - 2)
       }
+      
       if (rawSearch[2] === 'ST') {
         rawSearch[2] = 'STREET'
       } else if (rawSearch[2] === 'DR') {
@@ -80,25 +75,24 @@ export default function Main() {
         rawSearch[2] = 'ROAD'
       } else if (rawSearch[2] === 'BLVD') {
         rawSearch[2] = "BOULEVARD"
-      } else if (rawSearch[2] === '1ST') {
-        rawSearch[2] = '1'
-      } else if (rawSearch[2] === '2ND') {
-        rawSearch[2] = '2'
-      } else if (rawSearch[2] === '3RD') {
-        rawSearch[2] = '3'
+      } else if (rawSearch[2] === 'PL') {
+        rawSearch[2] = 'PLACE'
       } else if (regex.test(rawSearch[2])) {
         rawSearch[2] = rawSearch[2].slice(0, rawSearch[2].length - 2)
       }
+
       if (rawSearch[3] === 'ST') {
         rawSearch[3] = 'STREET'
       } else if (rawSearch[3] === 'DR') {
         rawSearch[3] = 'DRIVE'
       } else if (rawSearch[3] === 'AVE') {
         rawSearch[3] = 'AVENUE'
-      } else if (rawSearch[2] === 'RD') {
+      } else if (rawSearch[3] === 'RD') {
         rawSearch[3] = 'ROAD'
-      } else if (rawSearch[2] === 'BLVD') {
-        rawSearch[3] = "BOULEVARD"
+      } else if (rawSearch[3] === 'BLVD') {
+        rawSearch[3] = "BOULEVARD" 
+      } else if (rawSearch[3] === 'PL') {
+        rawSearch[3] = 'PLACE'
       }
       search = rawSearch.join(' ')
       console.log(search)
